@@ -38,3 +38,4 @@ $('.vote').on('click', function(event) {
         });
 });
 
+

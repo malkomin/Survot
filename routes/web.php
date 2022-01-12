@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\PostController;
+use \App\Http\Controllers\SurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,32 @@ Route::group(['middleware' => 'auth'], function ()
     Route::get('/delete-post/{post_id}', [
         PostController::class,'getDeletePost'
     ])->name('post.delete');
+
+    Route::post('/createsurvey', [
+        SurveyController::class, 'createSurvey'
+    ])->name('survey.create');
+
+    Route::post('/deletesurvey', [
+        SurveyController::class, 'deleteSurvey'
+    ])->name('survey.delete');
+
+    Route::post('/editsurvey', [
+        SurveyController::class, 'editSurvey'
+    ])->name('survey.edit');
+
+    Route::post('/takesurvey', [
+        SurveyController::class, 'takeSurvey'
+    ])->name('survey.take');
+
+    Route::get('/dashboard/surveys', [
+        SurveyController::class, 'getSurveys'
+    ])->name('survey.all');
+
+
+    Route::get('create_survey', function ()
+    {
+        return view('survey');
+    })->name('create.survey');
 });
 
 Route::post('/edit', [
@@ -76,13 +103,9 @@ Route::get('leaderboard', [
 
 Route::get('create_vote', function ()
 {
-    return view('createvote');
+    return view('vote');
 })->name('create.vote');
 
-Route::get('create_survey', function ()
-{
-    return view('createvote');
-})->name('create.survey');
 
 
 

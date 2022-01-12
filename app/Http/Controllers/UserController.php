@@ -63,7 +63,6 @@ class UserController extends Controller
         $this->validate($request, [
            'first_name' => 'required|max:120'
         ]);
-
         $user = Auth::user();
         $old_name = $user->first_name;
         $user->first_name = $request['first_name'];

@@ -75,7 +75,6 @@ class PostController extends Controller
         $user = Auth::user();
         $voteObj = $user->votes()->where('post_id', $post_id)->first();
         if ($voteObj) {
-            $update = true;
             if($vote == $voteObj->vote)
             {
                 $voteObj->delete();
