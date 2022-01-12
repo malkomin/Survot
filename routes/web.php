@@ -61,9 +61,11 @@ Route::group(['middleware' => 'auth'], function ()
         PostController::class,'getDeletePost'
     ])->name('post.delete');
 });
+
 Route::post('/edit', [
     PostController::class,'postEditPost',
 ])->name('edit');
+
 Route::post('/vote', [
     PostController::class,'postVotePost'
 ])->name('vote');
@@ -72,6 +74,15 @@ Route::get('leaderboard', [
      PostController::class, 'getLeaderboard'
 ])->name('leaderboard');
 
+Route::get('create_vote', function ()
+{
+    return view('createvote');
+})->name('create.vote');
+
+Route::get('create_survey', function ()
+{
+    return view('createvote');
+})->name('create.survey');
 
 
 
