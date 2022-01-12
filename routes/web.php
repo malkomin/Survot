@@ -48,11 +48,15 @@ Route::get('/dashboard', [
     PostController::class, 'getDashboard'
 ])->name('dashboard');
 
+Route::get("/user/{user_id}", [
+    UserController::class, 'getUser'
+])->name('user');
+
 Route::group(['middleware' => 'auth'], function ()
 {
-    Route::post('/createpost', [
-        PostController::class,'postCreatePost'
-    ])->name('post.create');
+    Route::post('/createvote', [
+        PostController::class,'postCreateVote'
+    ])->name('post.create.vote');
     Route::get('/delete-post/{post_id}', [
         PostController::class,'getDeletePost'
     ])->name('post.delete');
@@ -63,6 +67,10 @@ Route::post('/edit', [
 Route::post('/vote', [
     PostController::class,'postVotePost'
 ])->name('vote');
+
+Route::get('leaderboard', [
+     PostController::class, 'getLeaderboard'
+])->name('leaderboard');
 
 
 

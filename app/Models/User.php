@@ -33,6 +33,7 @@ class User extends Model implements Authenticatable
         $this->points -= 1;
         $this->save();
     }
+
     public function getPoint()
     {
         if($this->points == null)

@@ -91,4 +91,10 @@ class UserController extends Controller
         $file = Storage::disk('local')->get($filename);
         return new Response($file, 200);
     }
+
+    public function getUser($userId)
+    {
+        $user = User::find($userId);
+        return view('user', ['user' => $user]);
+    }
 }

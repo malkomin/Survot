@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Vote;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ class PostController extends Controller
         return view('dashboard', ['posts' => $posts]);
     }
 
-    public function postCreatePost(Request $request)
+    public function postCreateVote(Request $request)
     {
         $this->validate($request, [
             'body' => 'required|max:1000',
@@ -92,5 +93,11 @@ class PostController extends Controller
         $voteObj->post_id = $post->id;
         $voteObj->save();
         return null;
+    }
+
+    public function getLeaderboard()
+    {
+        $users = User::all();
+        return view('leaderboard' , ['users' => $users]);
     }
 }

@@ -4,7 +4,7 @@
     <section class="row new-post">
         <div class="col-md-6 col-md-offset-3">
             <header><h3>Start your vote!</h3></header>
-            <form action="{{ route('post.create') }}" method="post">
+            <form action="{{ route('post.create.vote') }}" method="post">
                 <div class="form-group">
                     <textarea class="col-md-12 form-control" name="body" id="new-post" rows="1" placeholder="Your Question"></textarea>
                     <div class=" form-check">
@@ -28,8 +28,10 @@
             @foreach($posts as $post)
                 <article class="post" data-postid="{{ $post->id }}">
                     <p>{{ $post->body }}</p>
-                    <div class="info">
-                        Posted by {{ $post->user->first_name }} on {{ $post->created_at }}
+                    <div href="#" class="info">
+                        Posted by
+                        <a href="{{ route('user', $post->user->id) }}" >{{ $post->user->first_name }}</a>
+                         on {{ $post->created_at }}
                     </div>
                     <div class="interaction">
                         <div class="form-group">
@@ -93,9 +95,9 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="modal-save">Save changes</button>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            </div>
+        </div>
+    </div>
 
     <script>
         var token = '{{ Session::token() }}';
